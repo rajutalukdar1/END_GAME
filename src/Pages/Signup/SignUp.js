@@ -13,7 +13,7 @@ const SignUp = () => {
 
     return (
         <div className='h-[800px] flex justify-center items-center ff'>
-            <div className='w-96 p-7 bg-teal-600'>
+            <div className='w-96 p-7 bg-green-600'>
                 <h2 className='text-xl text-center'>Sign Up</h2>
                 <FormControl onSubmit={handleSubmit(handleSignUp)} mt={5}>
                     <Box className="w-full max-w-xs mb-4">
