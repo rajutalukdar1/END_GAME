@@ -12,7 +12,7 @@ const Navbar = () => {
         <li><Link to="/login">Login</Link></li>
     </React.Fragment>
     return (
-        <div className='list-none ff font-normal'>
+        <div className='list-none ff font-normal text-1xl'>
             <Box  color='black' px={4}>
                 <Flex alignItems={'center'} justifyContent={'space-between'}>
                     <Flex h={16} alignItems={"center"}>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 </Flex>
 
                 {isOpen ? (
-                    <Box pb={4} >
+                    <Box pb={4}>
                         <Stack as={"nav"} spacing={4}>
                             {menuItems}
                         </Stack>
