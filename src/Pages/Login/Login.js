@@ -1,17 +1,88 @@
 import { Box, Input, Circle, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import facebook from '../../Assets/images.png'
+import { AuthContext } from '../../Context/AuthProvider';
 import './Login.css'
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { login, signInWithGoogle, signInWithFacebook } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
 
     const handleLogin = data => {
         console.log(data);
+        setLoginError('')
+        login(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User SignUp Successfully')
 
+                // const userInfo = {
+                //     displayName: data.name
+                // }
+                // console.log(userInfo);
+                // updateUser(userInfo)
+                //     .then(() => {
+                //         saveUser(data.name, data.email, data.role);
+                //     })
+                //     .catch(err => console.log(err))
+            })
+            .catch(error => {
+                console.error(error);
+                setLoginError(error.message)
+
+            })
+
+    }
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // const googleUser ={
+                //     name:user.displayName,
+                //     email:user.email
+                // }
+
+                // saveUser(user.displayName, user.email, 'buyer')
+
+                if (user.uid) {
+                    toast.success('Login successfully', {
+                        position: "top-center"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    const handleSignInWithFacebook = () => {
+        signInWithFacebook()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // const googleUser ={
+                //     name:user.displayName,
+                //     email:user.email
+                // }
+
+                // saveUser(user.displayName, user.email, 'buyer')
+
+                if (user.uid) {
+                    toast.success('Login successfully', {
+                        position: "top-center"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (
@@ -62,7 +133,7 @@ const Login = () => {
                     </form>
                     <small><p className='flex justify-center mt-2'>Don't have an accounts?<Link className='text-purple-600 font-bold' to='/signup'>Register now</Link></p></small>
                     <p className='text-center'>-------------Or-------------</p>
-                    <Link>
+                    <Link onClick={handleSignInWithGoogle}>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
@@ -79,7 +150,7 @@ const Login = () => {
                             </div>
                         </div>
                     </Link>
-                    <Link>
+                    <Link onClick={handleSignInWithFacebook}>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
@@ -96,7 +167,7 @@ const Login = () => {
                             </div>
                         </div>
                     </Link>
-                    <Link>
+                    {/* <Link>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
@@ -112,7 +183,7 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>
