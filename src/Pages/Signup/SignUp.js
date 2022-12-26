@@ -8,7 +8,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, signInWithFacebook } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
     const handleSignUp = (data) => {
@@ -60,28 +60,28 @@ const SignUp = () => {
             })
     }
 
-    // const handleSignInWithGitHub = () => {
-    //     signInWithGitHub()
-    //         .then(result => {
-    //             const user = result.user;
-    //             console.log(user);
-    //             // const googleUser ={
-    //             //     name:user.displayName,
-    //             //     email:user.email
-    //             // }
+    const handleSignInWithFacebook = () => {
+        signInWithFacebook()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // const googleUser ={
+                //     name:user.displayName,
+                //     email:user.email
+                // }
 
-    //             // saveUser(user.displayName, user.email, 'buyer')
+                // saveUser(user.displayName, user.email, 'buyer')
 
-    //             if (user.uid) {
-    //                 toast.success('Login successfully', {
-    //                     position: "top-center"
-    //                 });
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         })
-    // }
+                if (user.uid) {
+                    toast.success('Login successfully', {
+                        position: "top-center"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     return (
         <div>
@@ -162,7 +162,7 @@ const SignUp = () => {
                             </div>
                         </div>
                     </Link>
-                    <Link>
+                    <Link onClick={handleSignInWithFacebook}>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
