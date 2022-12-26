@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import AuthProvider from './Context/AuthProvider';
 
 const queryClient = new QueryClient()
 
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-    <ChakraProvider>
-      <App />
-    </ChakraProvider>
+      <ChakraProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ChakraProvider>
     </QueryClientProvider>
 
   </React.StrictMode>

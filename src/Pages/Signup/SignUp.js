@@ -1,15 +1,87 @@
-import { Box, Button, Circle, Input, Text, WrapItem } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, Circle, Input, Text } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import facebook from '../../Assets/images.png'
+import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [signUpError, setSignUPError] = useState('');
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
 
     const handleSignUp = (data) => {
         console.log(data)
+        setSignUpError('')
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User SignUp Successfully')
+
+                // const userInfo = {
+                //     displayName: data.name
+                // }
+                // console.log(userInfo);
+                // updateUser(userInfo)
+                //     .then(() => {
+                //         saveUser(data.name, data.email, data.role);
+                //     })
+                //     .catch(err => console.log(err))
+            })
+            .catch(error => {
+                console.error(error);
+                setSignUpError(error.message)
+
+            })
     }
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // const googleUser ={
+                //     name:user.displayName,
+                //     email:user.email
+                // }
+
+                // saveUser(user.displayName, user.email, 'buyer')
+
+                if (user.uid) {
+                    toast.success('Login successfully', {
+                        position: "top-center"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    // const handleSignInWithGitHub = () => {
+    //     signInWithGitHub()
+    //         .then(result => {
+    //             const user = result.user;
+    //             console.log(user);
+    //             // const googleUser ={
+    //             //     name:user.displayName,
+    //             //     email:user.email
+    //             // }
+
+    //             // saveUser(user.displayName, user.email, 'buyer')
+
+    //             if (user.uid) {
+    //                 toast.success('Login successfully', {
+    //                     position: "top-center"
+    //                 });
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // }
 
     return (
         <div>
@@ -56,19 +128,24 @@ const SignUp = () => {
                                 placeholder='Inter Your Password' />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </Box>
-                        <WrapItem>
-                            <Button className='w-[98%] mb-4' colorScheme='linkedin'><input value='Signup' type="submit" /></Button>
-                        </WrapItem>
 
-                        {/* <input className='btn btn-accent w-full text-xl pt-2' value="Login" type="submit" /> */}
+                        <div>
+                            <button style={{ border: '1px solid white' }}
+                                type='submit'
+                                className='w-full px-8 py-3 font-semibold rounded-md  bg-slate-600  hover:text-red-400 text-white hover:border-none'
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+
                         <div>
                             {signUpError && <p className='text-red-600'>{signUpError}</p>}
                         </div>
-                        <small><p className='flex justify-center'>Already have a accounts?<Link className='text-purple-600 font-bold' to='/login'>Login now</Link></p></small>
                     </form>
+                    <small><p className='flex justify-center mt-2'>Already have a accounts?<Link className='text-purple-600 font-bold' to='/login'>Login now</Link></p></small>
                     <p className='text-center'>-------------Or-------------</p>
-                    {/* onClick={handleSignInWithGoogle} */}
-                    <Link>
+
+                    <Link onClick={handleSignInWithGoogle}>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
@@ -90,6 +167,23 @@ const SignUp = () => {
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
                                 <div className='w-8 h-8 ml-1'>
                                     <img
+                                        src={facebook} alt=''
+                                    ></img>
+                                </div>
+                                <div className=' font-semibold '>
+                                    Continue with FaceBook
+                                </div>
+                                <div className='mr-6'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    {/* <Link onClick={handleSignInWithGitHub}>
+                        <div className='flex justify-content-center align-items-center mt-3 '>
+                            <div className='flex justify-between items-center login-container hover:bg-warning'>
+                                <div className='w-8 h-8 ml-1'>
+                                    <img
                                         src='https://i.ibb.co/Z62F8M5/github-512.png' alt=''
                                     ></img>
                                 </div>
@@ -101,7 +195,7 @@ const SignUp = () => {
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

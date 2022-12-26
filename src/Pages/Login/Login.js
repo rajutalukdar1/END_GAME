@@ -1,7 +1,8 @@
-import { Box, Button, Input, Circle, Text, WrapItem } from '@chakra-ui/react';
+import { Box, Input, Circle, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import facebook from '../../Assets/images.png'
 import './Login.css'
 
 const Login = () => {
@@ -46,20 +47,21 @@ const Login = () => {
                                 placeholder='Inter Your Email' />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </Box>
-                        <WrapItem>
-                            <Button className='w-[98%] mb-4' colorScheme='linkedin'><input value='Login' type="submit" /></Button>
-                        </WrapItem>
 
-                        {/* <input className='btn btn-accent w-full text-xl pt-2' value="Login" type="submit" /> */}
+                        <div>
+                            <button style={{ border: '1px solid white' }}
+                                type='submit'
+                                className='w-full px-8 py-3 font-semibold rounded-md bg-slate-600  hover:text-red-400 text-white hover:border-none'>
+                                Login
+                            </button>
+                        </div>
+
                         <div>
                             {loginError && <p className='text-red-600'>{loginError}</p>}
                         </div>
-                        <small><p className='flex justify-center'>Don't have an accounts?<Link className='text-purple-600 font-bold' to='/signup'>Register now</Link></p></small>
                     </form>
-
-                    {/* <Center pt={4}>New to SRJR ? <Link className='text-secondary ml-2' to="/signup">Sign Up</Link></Center> */}
+                    <small><p className='flex justify-center mt-2'>Don't have an accounts?<Link className='text-purple-600 font-bold' to='/signup'>Register now</Link></p></small>
                     <p className='text-center'>-------------Or-------------</p>
-                    {/* onClick={handleSignInWithGoogle} */}
                     <Link>
                         <div className='flex justify-content-center align-items-center mt-3 '>
                             <div className='flex justify-between items-center login-container hover:bg-warning'>
@@ -70,6 +72,23 @@ const Login = () => {
                                 </div>
                                 <div className=' font-semibold '>
                                     Continue with Google
+                                </div>
+                                <div className='mr-6'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link>
+                        <div className='flex justify-content-center align-items-center mt-3 '>
+                            <div className='flex justify-between items-center login-container hover:bg-warning'>
+                                <div className='w-8 h-8 ml-1'>
+                                    <img
+                                        src={facebook} alt=''
+                                    ></img>
+                                </div>
+                                <div className=' font-semibold '>
+                                    Continue with FaceBook
                                 </div>
                                 <div className='mr-6'>
 
