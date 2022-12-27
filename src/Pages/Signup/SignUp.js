@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import facebook from '../../Assets/images.png'
 import { AuthContext } from '../../Context/AuthProvider';
 
+
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, signInWithGoogle, signInWithFacebook } = useContext(AuthContext);
