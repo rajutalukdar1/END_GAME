@@ -47,6 +47,7 @@ const SignUp = () => {
                     toast.success('Login successfully', {
                         position: "top-center"
                     });
+                    navigate('/')
                 }
             })
             .catch(error => {

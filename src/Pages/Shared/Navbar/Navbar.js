@@ -5,7 +5,6 @@ import { Link, useNavigate, } from 'react-router-dom';
 import Logo from '../../../Assets/rsz_rsz_white-removebg-preview.png'
 import { AuthContext } from '../../../Context/AuthProvider';
 import { AiOutlineMessage, AiOutlineHome } from "react-icons/ai";
-import { ImExit } from "react-icons/im";
 import './Navbar.css'
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();

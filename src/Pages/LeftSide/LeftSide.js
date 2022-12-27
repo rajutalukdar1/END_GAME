@@ -5,11 +5,11 @@ import { BiLogInCircle } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import './LeftSide.css'
 
 const LeftSide = () => {
     const navigate = useNavigate();
     const { user, logOut } = useContext(AuthContext);
-    // console.log(user);
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -18,7 +18,7 @@ const LeftSide = () => {
             .catch(err => console.log(err));
     }
     return (
-        <div className='sticky'>
+        <div className='header'>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
@@ -28,17 +28,17 @@ const LeftSide = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 bg-base-100 text-base-content font-normal">
 
-                        <li className='rounded-md'><Link className='pl-0 text-2xl' to="/"><AiOutlineHome /> Home</Link></li>
-                        <li className='rounded-md'><Link className='pl-0 text-2xl' to="/message"><AiOutlineMessage />Message</Link></li>
-                        <li className='rounded-md'><Link className=' pl-0 text-2xl' to="/about"><AiOutlineUser />About</Link></li>
+                        <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/"><AiOutlineHome /> Home</Link></li>
+                        <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/media"><AiOutlineMessage />Media</Link></li>
+                        <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/message"><AiOutlineMessage />Message</Link></li>
+                        <li className='rounded-md mb-4'><Link className=' pl-0 text-2xl' to="/about"><AiOutlineUser />About</Link></li>
                         {
                             user?.uid ?
                                 <>
-                                    <div className='flex items-center text-xl py-2'>
-                                        {/* <Avatar name='Dan Abrahmov' src={user?.photoURL} /> */}
+                                    <div className='flex items-center text-xl py-2 mb-4'>
                                         {
                                             user?.photoURL ?
-                                                <img className='rounded-full mt-3 ml-4' style={{ height: '45px', width: '45px' }} src={user.photoURL} alt="" />
+                                                <img className='rounded-full mt-3' style={{ height: '45px', width: '45px' }} src={user.photoURL} alt="" />
                                                 : <FaUser></FaUser>
                                         }
                                         <p className='pl-2 text-sm'>{user?.displayName}</p>

@@ -40,6 +40,7 @@ const Login = () => {
                     toast.success('Login successfully', {
                         position: "top-center"
                     });
+                    navigate('/')
                 }
             })
             .catch(error => {

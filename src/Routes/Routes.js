@@ -3,6 +3,7 @@ import Main from "../Layout/Main/Main";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
+import Media from "../Pages/Media/Media";
 import About from "../Pages/Others/About/About";
 import Message from "../Pages/Others/Message/Message";
 import SignUp from "../Pages/Signup/SignUp";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />
+            },
+            {
+                path: '/media',
+                element: <Media/>
             },
          
         ]
