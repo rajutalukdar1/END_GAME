@@ -22,7 +22,7 @@ const Navbar = () => {
     const menuItems = <React.Fragment>
         <li className='text-xl'><Link to="/"><AiOutlineHome /></Link></li>
         <li className='text-xl'><Link to="/message"><AiOutlineMessage /></Link></li>
-        {
+        {/* {
             user?.uid ?
                 <>
                     <div className="dropdown dropdown-end">
@@ -43,7 +43,7 @@ const Navbar = () => {
                 :
                 <li><Link to="/login">Log in</Link></li>
 
-        }
+        } */}
 
     </React.Fragment>
     return (
