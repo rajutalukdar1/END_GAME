@@ -2,7 +2,7 @@ import { Box, Input, Circle, Text } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import facebook from '../../Assets/images.png'
 import { AuthContext } from '../../Context/AuthProvider';
 import './Login.css'
@@ -11,6 +11,7 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { login, signInWithGoogle, signInWithFacebook } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = data => {
         console.log(data);
@@ -20,16 +21,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('User SignUp Successfully')
-
-                // const userInfo = {
-                //     displayName: data.name
-                // }
-                // console.log(userInfo);
-                // updateUser(userInfo)
-                //     .then(() => {
-                //         saveUser(data.name, data.email, data.role);
-                //     })
-                //     .catch(err => console.log(err))
+                navigate('/')
             })
             .catch(error => {
                 console.error(error);
@@ -44,13 +36,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // const googleUser ={
-                //     name:user.displayName,
-                //     email:user.email
-                // }
-
-                // saveUser(user.displayName, user.email, 'buyer')
-
                 if (user.uid) {
                     toast.success('Login successfully', {
                         position: "top-center"
@@ -67,13 +52,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // const googleUser ={
-                //     name:user.displayName,
-                //     email:user.email
-                // }
-
-                // saveUser(user.displayName, user.email, 'buyer')
-
                 if (user.uid) {
                     toast.success('Login successfully', {
                         position: "top-center"
@@ -167,23 +145,6 @@ const Login = () => {
                             </div>
                         </div>
                     </Link>
-                    {/* <Link>
-                        <div className='flex justify-content-center align-items-center mt-3 '>
-                            <div className='flex justify-between items-center login-container hover:bg-warning'>
-                                <div className='w-8 h-8 ml-1'>
-                                    <img
-                                        src='https://i.ibb.co/Z62F8M5/github-512.png' alt=''
-                                    ></img>
-                                </div>
-                                <div className=' font-semibold '>
-                                    Continue with github
-                                </div>
-                                <div className='mr-6'>
-
-                                </div>
-                            </div>
-                        </div>
-                    </Link> */}
                 </div>
             </div>
         </div>
