@@ -38,7 +38,7 @@ const Navbar = () => {
                             spacing={4}
                             display={{ base: "none", md: "flex", sm: "flex" }}
                         >
-                            <label htmlFor="my-drawer-2" className="text-xl drawer-button md:hidden lg:hidden"><HamburgerIcon/></label>
+                            <label htmlFor="my-drawer-2" className="text-xl drawer-button lg:hidden"><HamburgerIcon/></label>
                         </HStack>
                     </Flex>
                 </Flex>
