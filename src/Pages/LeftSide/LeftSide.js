@@ -5,7 +5,7 @@ import { BiLogInCircle } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-import './LeftSide.css'
+import './LeftSide.css';
 import Footer from '../Shared/Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
 
@@ -22,12 +22,12 @@ const LeftSide = () => {
     return (
         <div className='header'>
             <div>
-                <Navbar/>
+                <Navbar />
                 <div className="drawer drawer-mobile">
                     <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-                    
-                    <div className="drawer-content">
-                        <Outlet></Outlet>
+
+                    <div className="drawer-content mx-auto scrollBar">
+                        <Outlet className=''></Outlet>
                     </div>
                     <div className="drawer-side lg:block">
                         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>

@@ -1,9 +1,11 @@
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiChat, BiLike, BiShare } from 'react-icons/bi';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Media = () => {
+    const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/allPosts`;
     const { data: post = [], refetch } = useQuery({
         queryKey: ['post'],
@@ -12,19 +14,21 @@ const Media = () => {
             const data = await res.json();
             return data;
         }
+
     })
+    console.log(post);
     return (
         <div>
             {
                 post && post?.map((post, i) => <div>
-                    <Card maxW='md'>
+                    <Card maxW='xl'>
                         <CardHeader>
                             <Flex spacing='4'>
                                 <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                                    <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+                                    <Avatar name='Segun Adebayo' src={user?.photoURL} />
 
                                     <Box>
-                                        <Heading size='sm'>Segun Adebayo</Heading>
+                                        <Heading size='sm'>{user?.displayName}</Heading>
                                         <Text>Creator, Chakra UI</Text>
                                     </Box>
                                 </Flex>
@@ -38,14 +42,12 @@ const Media = () => {
                         </CardHeader>
                         <CardBody>
                             <Text>
-                                With Chakra UI, I wanted to sync the speed of development with the speed
-                                of design. I wanted the developer to be just as excited as the designer to
-                                create a screen.
+                                {post?.massage}
                             </Text>
                         </CardBody>
                         <Image
                             objectFit='cover'
-                            src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                            src={post?.image}
                             alt='Chakra UI'
                         />
 
