@@ -5,17 +5,15 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { PostAdd } from '../../../Hook/PostAdd';
 
 const Home = () => {
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, reset } = useForm();
     const { user } = useContext(AuthContext);
     const imgbbHostKey = process.env.REACT_APP_imgbb_key;
 
     const handelPost = data => {
-        console.log(data);
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imgbbHostKey}`
-        console.log(url);
         fetch(url, {
             method: 'POST',
             body: formData
@@ -28,10 +26,13 @@ const Home = () => {
                 const addPost = {
                     image: imgData.data.url,
                     massage: data.massage,
-                    email: `${user.email}`
+                    email: `${user.email}`,
+                    displayName:`${user?.displayName}`,
+                    photoURL:`${user?.photoURL}`
 
                 }
                 PostAdd(addPost);
+                reset();
             })
     }
 

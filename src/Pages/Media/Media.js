@@ -3,9 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { BiChat, BiLike, BiShare } from 'react-icons/bi';
 import { AuthContext } from '../../Context/AuthProvider';
+import Review from '../Shared/Modal/Review';
+import moment from 'moment';
+
 
 const Media = () => {
     const { user } = useContext(AuthContext);
+    
     const url = `http://localhost:5000/allPosts`;
     const { data: post = [], refetch } = useQuery({
         queryKey: ['post'],
@@ -15,8 +19,20 @@ const Media = () => {
             return data;
         }
 
+    });
+    
+    const { data: comments = []} = useQuery({
+      
+        queryKey: ['comments'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/allcomments')
+            const data = await res.json();
+            console.log(comments)
+            return data;
+        }
+
     })
-    console.log(post);
+    
     return (
         <div>
             {
@@ -25,11 +41,11 @@ const Media = () => {
                         <CardHeader>
                             <Flex spacing='4'>
                                 <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                                    <Avatar name='Segun Adebayo' src={user?.photoURL} />
+                                    <Avatar name='Segun Adebayo' src={post?.photoURL} />
 
                                     <Box>
-                                        <Heading size='sm'>{user?.displayName}</Heading>
-                                        <Text>Creator, Chakra UI</Text>
+                                        <Heading size='sm'>{post?.displayName}</Heading>
+                                        <Text>{moment().format('LL')} ({moment().format('LT')})</Text>
                                     </Box>
                                 </Flex>
                                 <IconButton
@@ -63,13 +79,26 @@ const Media = () => {
                             <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
                                 Like
                             </Button>
-                            <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
-                                Comment
+                            <Button alignItems={'center'} flex='1' variant='ghost' leftIcon={<BiChat />}>
+                              
+                                
+                                 
+
+                                        <label className=' cursor-pointer flex items-center' htmlFor="my-modal-3">Comment</label>
+                                    
+                                    { <Review />}
+                                
                             </Button>
                             <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
                                 Share
                             </Button>
+                            <>
+                            {
+                                comments?.map(comment => <p>{comment?.message}</p>)
+                            }
+                        </>
                         </CardFooter>
+                      
                     </Card>
                 </div>)
             }

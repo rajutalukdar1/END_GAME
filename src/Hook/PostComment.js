@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-export const PostAdd = (product) => {
-    fetch('http://localhost:5000/srjrPost', {
+export const PostComment = (product) => {
+    fetch('http://localhost:5000/postcomment', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -14,4 +14,6 @@ export const PostAdd = (product) => {
             }
             
         })
+
+
 }

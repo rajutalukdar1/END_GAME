@@ -14,12 +14,12 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = data => {
-        console.log(data);
+        
         setLoginError('')
         login(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                
                 toast.success('User SignUp Successfully')
                 navigate('/')
             })
@@ -35,7 +35,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+               
                 if (user.uid) {
                     toast.success('Login successfully', {
                         position: "top-center"
@@ -52,7 +52,7 @@ const Login = () => {
         signInWithFacebook()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                
                 if (user.uid) {
                     toast.success('Login successfully', {
                         position: "top-center"
