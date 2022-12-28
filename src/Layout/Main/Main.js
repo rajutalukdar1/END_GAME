@@ -1,38 +1,30 @@
-import { Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import LeftSide from '../../Pages/LeftSide/LeftSide';
-import RightSide from '../../Pages/RightSide/RightSide';
-import Footer from '../../Pages/Shared/Footer/Footer';
-import Navbar from '../../Pages/Shared/Navbar/Navbar';
+// import { Grid, GridItem } from '@chakra-ui/react';
+// import React from 'react';
+// import { Outlet } from 'react-router-dom';
+// import LeftSide from '../../Pages/LeftSide/LeftSide';
+// import RightSide from '../../Pages/RightSide/RightSide';
+// import Footer from '../../Pages/Shared/Footer/Footer';
+// import Navbar from '../../Pages/Shared/Navbar/Navbar';
 
-const Main = () => {
-    return (
-        <Grid
-            templateAreas={`"header header"
-                  "nav main"
-                  "nav footer"`}
-            gridTemplateRows={'50px 1fr 30px'}
-            gridTemplateColumns={'250px 1fr'}
-            h='200px'
-            gap='1'
-            color='blackAlpha.700'
-            fontWeight='bold'
-        >
-            <GridItem area={'header'}>
-                <Navbar/>
-            </GridItem>
-            <GridItem area={''}>
-                <LeftSide/>
-            </GridItem>
-            <GridItem area={'main'}>
-                <Outlet/>
-            </GridItem>
-            <GridItem  area={'footer'}>
-                <Footer/>
-            </GridItem>
-        </Grid>
-    );
-};
+// const Main = () => {
+//     return (
+//         // <div>
+//         //     <div>
+//         //         <Navbar />
+//         //     </div>
+//         //     <div className='grid grid-cols-2'>
+//         //         <div className='lg:w-1/4 md:w-4/4'>
+//         //             <LeftSide />
+//         //         </div>
+//         //         <div className='lg:w-3/4 lg:mx-auto md:mx-auto mx-auto md:w-4/4'>
+//         //             <Outlet />
+//         //         </div>
+//         //     </div>
+//         //     <div>
+//         //         <Footer />
+//         //     </div>
+//         // </div>
+//     );
+// };
 
-export default Main;
+// export default Main;

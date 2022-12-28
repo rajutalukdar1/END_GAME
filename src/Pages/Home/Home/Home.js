@@ -1,17 +1,26 @@
+import { Box, Input } from '@chakra-ui/react';
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Home = () => {
-    const {user} = useContext(AuthContext)
+    const { handleSubmit,  } = useForm();
+    const { user } = useContext(AuthContext)
     return (
-        <div className='mx-auto'>
-            <div>
-                <textarea className="textarea textarea-success w-3/4 text-justify h-10" placeholder={`What's happening?${user?.displayName}`}></textarea>
-            </div>
-            <div className='w-3/4 grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                <input type="file" className="file-input file-input-bordered file-input-success" />
-                <input type="file" className="file-input file-input-bordered file-input-success" />
-            </div>
+        <div className='text-center md:w-full mt-5 lg:mt-8 md:mt-0 m-auto'>
+            <form onSubmit={handleSubmit} className="mx-auto">
+            
+                    <Box className="form-control">
+                        <textarea className="textarea textarea-success w-full lg:w-2/4 md:w-2/4  text-justify h-10" placeholder={`What's happening?${user?.displayName}`}></textarea>
+                    </Box>
+                    <Box mt={3} className="form-control">
+                        <input type="file" className="file-input w-full lg:w-2/4 md:w-2/4 file-input-bordered file-input-success " />
+                    </Box>
+                
+                <Box mt={3} className="form-control">
+                    <button className='btn btn-success w-full lg:w-2/4 md:w-2/4 bg' type="submit">Post</button>
+                </Box>
+            </form>
         </div>
 
     );
