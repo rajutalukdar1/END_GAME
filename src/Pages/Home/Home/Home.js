@@ -14,6 +14,7 @@ const Home = () => {
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imgbbHostKey}`
+        console.log(url);
         fetch(url, {
             method: 'POST',
             body: formData
@@ -27,8 +28,8 @@ const Home = () => {
                     image: imgData.data.url,
                     massage: data.massage,
                     email: `${user.email}`,
-                    displayName:`${user?.displayName}`,
-                    photoURL:`${user?.photoURL}`
+                    displayName: `${user?.displayName}`,
+                    photoURL: `${user?.photoURL}`
 
                 }
                 PostAdd(addPost);

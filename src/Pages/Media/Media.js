@@ -9,7 +9,7 @@ import moment from 'moment';
 
 const Media = () => {
     const { user } = useContext(AuthContext);
-    
+
     const url = `http://localhost:5000/allPosts`;
     const { data: post = [], refetch } = useQuery({
         queryKey: ['post'],
@@ -20,23 +20,23 @@ const Media = () => {
         }
 
     });
-    
-    const { data: comments = []} = useQuery({
-      
+
+    const { data: comments = [] } = useQuery({
+
         queryKey: ['comments'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/allcomments')
             const data = await res.json();
-            console.log(comments)
+            // console.log(comments)
             return data;
         }
 
     })
-    
+
     return (
         <div>
             {
-                post && post?.map((post, i) => <div>
+                post && post?.map((post, i) => <div key={i}>
                     <Card maxW='xl'>
                         <CardHeader>
                             <Flex spacing='4'>
@@ -80,25 +80,25 @@ const Media = () => {
                                 Like
                             </Button>
                             <Button alignItems={'center'} flex='1' variant='ghost' leftIcon={<BiChat />}>
-                              
-                                
-                                 
 
-                                        <label className=' cursor-pointer flex items-center' htmlFor="my-modal-3">Comment</label>
-                                    
-                                    { <Review />}
-                                
+
+
+
+                                <label className=' cursor-pointer flex items-center' htmlFor="my-modal-3">Comment</label>
+
+                                {<Review />}
+
                             </Button>
                             <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
                                 Share
                             </Button>
                             <>
-                            {
-                                comments?.map(comment => <p>{comment?.message}</p>)
-                            }
-                        </>
+                                {
+                                    comments?.map((comment, i) => <p key={i}>{comment?.message}</p>)
+                                }
+                            </>
                         </CardFooter>
-                      
+
                     </Card>
                 </div>)
             }
