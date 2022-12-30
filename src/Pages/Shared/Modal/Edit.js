@@ -17,7 +17,7 @@ const Edit = () => {
       address: data.address
     }
     console.log(data);
-    fetch('http://localhost:5000/about', {
+    fetch('https://srjr-server.vercel.app/about', {
       method: "POST",
       headers: {
         'content-type': 'application/json'

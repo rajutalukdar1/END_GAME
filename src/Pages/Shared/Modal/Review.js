@@ -22,7 +22,7 @@ const Review = ({ post }) => {
       _id: post._id
     }
     console.log(reviews)
-    fetch(`http://localhost:5000/postcomment`, {
+    fetch(`https://srjr-server.vercel.app/postcomment`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'
@@ -52,7 +52,6 @@ const Review = ({ post }) => {
               <Box mt={3} className="form-control">
                 <button className='btn btn-success w-full lg:w-1/2 md:w-2/4 bg' type="submit">Post</button>
               </Box>
-
             </form>
           </div>
         </div>

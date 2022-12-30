@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 export const PostComment = (product) => {
-    fetch('http://localhost:5000/postcomment', {
+    fetch('https://srjr-server.vercel.app/postcomment', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -12,7 +12,7 @@ export const PostComment = (product) => {
             if (data.acknowledged) {
                 toast.success('Your Post Was Send');
             }
-            
+
         })
 
 
