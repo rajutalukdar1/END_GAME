@@ -13,7 +13,7 @@ const Media = () => {
     const { loading } = useContext(AuthContext);
 
 
-    const url = `https://srjr-server.vercel.app/allPosts`;
+    const url = `https://connect-dun.vercel.app/allPosts`;
     const { data: post = [], refetch } = useQuery({
         queryKey: ['post'],
         queryFn: async () => {
@@ -28,7 +28,7 @@ const Media = () => {
 
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await fetch('https://srjr-server.vercel.app/allcomments')
+            const res = await fetch('https://connect-dun.vercel.app/allcomments')
             const data = await res.json();
             // console.log(comments)
             return data;

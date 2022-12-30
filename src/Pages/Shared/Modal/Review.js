@@ -22,7 +22,7 @@ const Review = ({ post }) => {
       _id: post._id
     }
     console.log(reviews)
-    fetch(`https://srjr-server.vercel.app/postcomment`, {
+    fetch(`https://connect-dun.vercel.app/postcomment`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'

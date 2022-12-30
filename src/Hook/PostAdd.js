@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 export const PostAdd = (product) => {
-    fetch('https://srjr-server.vercel.app/srjrPost', {
+    fetch('https://connect-dun.vercel.app/srjrPost', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

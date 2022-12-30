@@ -17,7 +17,7 @@ const Edit = () => {
       address: data.address
     }
     console.log(data);
-    fetch('https://srjr-server.vercel.app/about', {
+    fetch('https://connect-dun.vercel.app/about', {
       method: "POST",
       headers: {
         'content-type': 'application/json'
