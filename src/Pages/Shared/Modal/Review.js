@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
