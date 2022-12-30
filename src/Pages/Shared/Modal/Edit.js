@@ -27,13 +27,13 @@ const Edit = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        // if (data.acknowledged) {
-        //   setAddress(null);
-        //   toast.success('Address Submitted');
-        // }
-        // else {
-        //   toast.error(data.message);
-        // }
+        if (data.acknowledged) {
+
+          toast.success('Address Submitted');
+        }
+        else {
+          toast.error(data.message);
+        }
       });
   }
 

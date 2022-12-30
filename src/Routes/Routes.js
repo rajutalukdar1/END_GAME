@@ -15,10 +15,10 @@ const router = createBrowserRouter([
         element: <LeftSide />,
         errorElement: <ErrorPage />,
         children: [
-            {
-                path: '/',
-                element: <Home></Home>
-            },
+            // {
+            //     path: '/',
+            //     element: <Home></Home>
+            // },
             {
                 path: '/login',
                 element: <Login></Login>

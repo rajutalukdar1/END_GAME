@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { AiOutlineHome, AiOutlineMessage, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineMessage, AiOutlineUser } from 'react-icons/ai';
 import { RxExit } from "react-icons/rx";
 import { BiLogInCircle } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import './LeftSide.css';
+import { GoFileMedia } from "react-icons/go";
 import Footer from '../Shared/Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
 
@@ -33,8 +34,8 @@ const LeftSide = () => {
                         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                         <ul className="menu p-4 bg-base-100 text-base-content font-normal">
 
-                            <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/"><AiOutlineHome /> Home</Link></li>
-                            <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/media"><AiOutlineMessage />Media</Link></li>
+                            {/* <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/"><AiOutlineHome /> Home</Link></li> */}
+                            <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/media"><GoFileMedia /> Media</Link></li>
                             <li className='rounded-md mb-4'><Link className='pl-0 text-2xl' to="/message"><AiOutlineMessage />Message</Link></li>
                             <li className='rounded-md mb-4'><Link className=' pl-0 text-2xl' to="/about"><AiOutlineUser />About</Link></li>
                             {

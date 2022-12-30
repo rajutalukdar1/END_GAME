@@ -5,10 +5,13 @@ import { BiChat, BiLike, BiShare } from 'react-icons/bi';
 import { AuthContext } from '../../Context/AuthProvider';
 import Review from '../Shared/Modal/Review';
 import moment from 'moment';
+import Loader from '../Shared/Loader/Loader';
+import Home from '../Home/Home/Home';
 
 
 const Media = () => {
-    const { user } = useContext(AuthContext);
+    const { loading } = useContext(AuthContext);
+
 
     const url = `http://localhost:5000/allPosts`;
     const { data: post = [], refetch } = useQuery({
@@ -33,8 +36,13 @@ const Media = () => {
 
     })
 
+    if (loading) {
+        return <Loader></Loader>
+    }
+
     return (
         <div>
+            <Home></Home>
             {
                 post && post?.map((post, i) => <div key={i}>
                     <Card maxW='xl'>
@@ -86,7 +94,9 @@ const Media = () => {
 
                                 <label className=' cursor-pointer flex items-center' htmlFor="my-modal-3">Comment</label>
 
-                                {<Review />}
+                                {
+                                    <Review post={post} />
+                                }
 
                             </Button>
                             <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
